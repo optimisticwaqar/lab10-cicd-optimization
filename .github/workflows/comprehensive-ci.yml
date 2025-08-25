@@ -36,8 +36,7 @@ jobs:
       run: pip install -r requirements.txt
         
     - name: Run linting
-      run: |
-        npx eslint . --ext .js --format=github || echo "Linting completed"
+      run: npx eslint . --ext .js --format=github || echo "Linting completed"
 
   test-node:
     name: Node.js Testing
@@ -92,7 +91,6 @@ jobs:
     steps:
     - name: Generate performance report
       run: |
-        # Create actual file on disk
         echo "# CI/CD Performance Report - Ubuntu Only" > performance-report.md
         echo "" >> performance-report.md
         echo "**Workflow Run:** ${{ github.run_number }}" >> performance-report.md
@@ -106,7 +104,6 @@ jobs:
         echo "- Node.js Tests: ${{ needs.test-node.result }}" >> performance-report.md  
         echo "- Python Tests: ${{ needs.test-python.result }}" >> performance-report.md
         
-        # Verify file exists
         ls -la performance-report.md
         cat performance-report.md
         
@@ -118,7 +115,6 @@ jobs:
         
     - name: Generate test summary
       run: |
-        # Create test summary file
         echo "Test Summary for Ubuntu CI/CD Pipeline" > test-summary.txt
         echo "=====================================" >> test-summary.txt
         echo "Workflow Run: ${{ github.run_number }}" >> test-summary.txt
